@@ -19,13 +19,26 @@ async def say_hello(name: str):
 #     return {"message": "All blogs provided"}
 
 
-@app.get("/blog/all", tags=["blog"])
+@app.get(
+    "/blog/all",
+         tags=["blog"],
+         summary="Retrieve all blogs",
+         description="This api call simulates fetching all blogs."
+        )
 def get_all_blogs(page = 1, page_size: Optional[int] = None):
     return {"message": f"All {page_size} blogs on {page}"}
 
 
 @app.get("/blog/{id}/comments/{comment_id}", tags=["blog", "comment"])
 def get_comment(id: int, comment_id: int, valid: bool = True, username: Optional[str] = None):
+    """
+    Simulates retrieving a comment of a blog
+
+    - **param id**: mandatory path parameter
+    - **param comment_id**: mandatory path parameter
+    - **param valid**: optional query parameter
+    - **param username**: optional query parameter
+    """
     return {"message": f'blog_id {id}, comment_id {comment_id}, valid {valid}, username {username}'}
 
 
