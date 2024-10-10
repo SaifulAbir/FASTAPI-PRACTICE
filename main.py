@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from typing import Optional
 from enum import Enum
 app = FastAPI()
 
@@ -19,7 +20,7 @@ async def say_hello(name: str):
 
 
 @app.get("/blog/all")
-def get_all_blogs(page = 1, page_size = 10):
+def get_all_blogs(page = 1, page_size: Optional[int] = None):
     return {"message": f"All {page_size} blogs on {page}"}
 
 
