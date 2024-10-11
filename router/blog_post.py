@@ -31,8 +31,8 @@ def create_comment(blog: BlogModel, id: int,
                                            description="Some description for comment_id",
                                            alias='commentId',
                                            deprecated=True),
-                   content: str = Body(...),
-                   another_content: str = Body(Ellipsis)
+                   content: str = Body(..., min_length=10, max_length=50),
+                   another_content: str = Body(Ellipsis, regex='^[a-z\s]*$')
                    ):
     return {'blog': blog, 'id': id,
             'comment_id': comment_id,
