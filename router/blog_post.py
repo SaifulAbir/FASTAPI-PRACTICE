@@ -31,8 +31,10 @@ def create_comment(blog: BlogModel, id: int,
                                            description="Some description for comment_id",
                                            alias='commentId',
                                            deprecated=True),
-                   content: str = Body("hi how are you")
+                   content: str = Body(...),
+                   another_content: str = Body(Ellipsis)
                    ):
     return {'blog': blog, 'id': id,
             'comment_id': comment_id,
-            'content': content}
+            'content': content,
+            'another_content': another_content}
