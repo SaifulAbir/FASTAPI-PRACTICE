@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from db import models
+from db.database import engine
 from router import blog_get
 from router import blog_post
 
@@ -16,3 +18,6 @@ async def root():
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
+
+
+models.Base.metadata.create_all(engine)
