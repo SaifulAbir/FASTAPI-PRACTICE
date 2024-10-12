@@ -33,7 +33,7 @@ def create_comment(blog: BlogModel, id: int,
                                            deprecated=True),
                    content: str = Body(..., min_length=10, max_length=50),
                    another_content: str = Body(Ellipsis, regex='^[a-z\s]*$'),
-                   v: Optional[List[str]] = Query(None)
+                   v: Optional[List[str]] = Query(['1.0', '1.1', '1.2'])
                    ):
     return {'blog': blog, 'id': id,
             'comment_id': comment_id,
