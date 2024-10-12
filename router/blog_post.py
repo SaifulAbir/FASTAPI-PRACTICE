@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Dict
 from fastapi import APIRouter, Query, Body, Path
 from pydantic import BaseModel
 
@@ -13,6 +13,8 @@ class BlogModel(BaseModel):
     content: str
     nb_comments: int
     published: Optional[bool]
+    tags: List[str] = []
+    metadata: Dict[str, str] = {'key1': 'val1'}
 
 
 @router.post('/new/{id}')
