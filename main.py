@@ -3,13 +3,14 @@ from fastapi.responses import JSONResponse
 from db import models
 from db.database import engine
 from exceptions import StoryException
-from router import blog_get, user, article
+from router import blog_get, user, article, product
 from router import blog_post
 
 
 app = FastAPI()
 app.include_router(user.router)
 app.include_router(article.router)
+app.include_router(product.router)
 app.include_router(blog_get.router)
 app.include_router(blog_post.router)
 
