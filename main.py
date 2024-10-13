@@ -1,6 +1,8 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from db import models
 from db.database import engine
+from exceptions import StoryException
 from router import blog_get, user, article
 from router import blog_post
 
@@ -21,5 +23,10 @@ async def root():
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
 
+
+@app.exception_handler(StoryException)
+def story_exception_handler(request: Request, exc: StoryException):
+    return JSONResponse(status_code=418,
+                        content={'detail': exc.name})
 
 models.Base.metadata.create_all(engine)
