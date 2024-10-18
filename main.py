@@ -7,6 +7,7 @@ from router import blog_get, user, article, product, file
 from auth import authentication
 from router import blog_post
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
 
 app = FastAPI()
@@ -46,3 +47,5 @@ app.add_middleware(
     allow_methods = ['*'],
     allow_headers = ['*']
 )
+
+app.mount('/files', StaticFiles(directory="files"), name='files')
