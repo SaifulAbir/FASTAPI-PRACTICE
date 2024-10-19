@@ -40,7 +40,7 @@ def create_comment(blog: BlogModel, id: int,
                                            alias='commentTitle',
                                            deprecated=True),
                    content: str = Body(..., min_length=10, max_length=50),
-                   another_content: str = Body(Ellipsis, regex='^[a-z\s]*$'),
+                   another_content: str = Body(Ellipsis, pattern=r'^[a-z\s]*$'),
                    v: Optional[List[str]] = Query(['1.0', '1.1', '1.2']),
                    comment_id: int = Path(gt=5, le=10)
                    ):
