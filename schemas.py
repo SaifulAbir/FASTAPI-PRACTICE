@@ -54,3 +54,9 @@ class ArticleDisplay(BaseModel):
     model_config = ConfigDict(
         from_attributes=True
     )
+
+
+class ProductBase(BaseModel):
+    title: str
+    description: str
+    price: float
