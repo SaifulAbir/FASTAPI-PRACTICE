@@ -1,10 +1,12 @@
 from fastapi.params import Depends
 from fastapi.requests import Request
 from fastapi import APIRouter
+from custom_log import log
 
 router = APIRouter(
     prefix='/dependencies',
-    tags=['dependencies']
+    tags=['dependencies'],
+    dependencies=[Depends(log)]
 )
 
 def convert_params(request: Request, separator: str):
