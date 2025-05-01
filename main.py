@@ -5,7 +5,7 @@ from fastapi.websockets import WebSocket
 from db import models
 from db.database import engine
 from exceptions import StoryException
-from router import blog_get, user, article, product, file
+from router import blog_get, user, article, product, file, dependencies
 from auth import authentication
 from router import blog_post
 from fastapi.middleware.cors import CORSMiddleware
@@ -16,6 +16,7 @@ from client import html
 
 
 app = FastAPI()
+app.include_router(dependencies.router)
 app.include_router(templates.router)
 app.include_router(authentication.router)
 app.include_router(file.router)
